@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشاركة الموقع</title>
+    <script>
+        window.onload = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("المتصفح لا يدعم تحديد الموقع.");
+            }
+        };
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const link = `https://www.google.com/maps?q=${latitude},${longitude}`;
+            console.log(`موقع الشخص: ${link}`);
+            // يمكنك هنا إرسال الرابط إلى السيرفر أو حفظه
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("لم يتم السماح بالوصول إلى الموقع.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("الموقع غير متاح.");
+                    break;
+                case error.TIMEOUT:
+                    alert("انتهت المهلة.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("حدث خطأ غير معروف.");
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>/h1>
+</body>
+</html>
